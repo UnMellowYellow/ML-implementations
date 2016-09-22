@@ -1,4 +1,4 @@
-import numpy
+import numpy as np
 import json
 import os
 import glob
@@ -26,6 +26,8 @@ def get_data_list(aname,directory):
 
 	# Checking for all names in the data directory
 	files 					= glob.glob(DATA_DIR+'/'+aname+'.csv')
+
+	# No user with the given username exists
 	if len(files) == 0:
 		exit(2)
 
@@ -55,7 +57,7 @@ def format_data(data):
 	for entry in data:
 		items 				= entry.split(',')
 		for i in range(size):
-			formatted_data[i].append(items[i])
+			formatted_data[i].append(float(items[i]))
 
 	print(formatted_data)
 	return formatted_data
@@ -68,3 +70,4 @@ request_data 				= get_request_data(FILE_PATH)
 user_file					= get_data_list(request_data['uname'].lower(),DATA_DIR)
 raw_data 					= get_data(user_file)
 formatted_data 				= format_data(raw_data)
+print(np.cov(formatted_data))
