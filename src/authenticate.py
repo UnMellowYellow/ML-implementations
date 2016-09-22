@@ -2,6 +2,7 @@ import numpy as np
 import json
 import os
 import glob
+import scipy.linalg
 
 # Accessing the login request details
 def get_request_data(file):
@@ -59,7 +60,6 @@ def format_data(data):
 		for i in range(size):
 			formatted_data[i].append(float(items[i]))
 
-	print(formatted_data)
 	return formatted_data
 
 # Constants and predefined variables
@@ -70,4 +70,18 @@ request_data 				= get_request_data(FILE_PATH)
 user_file					= get_data_list(request_data['uname'].lower(),DATA_DIR)
 raw_data 					= get_data(user_file)
 formatted_data 				= format_data(raw_data)
-print(np.cov(formatted_data))
+covariance 					= np.cov(formatted_data)
+new_covariance_metric		= scipy.linalg.inv(scipy.linalg.sqrtm(covariance))
+# transpose					= np.transpose(new_covariance_metric)
+print(new_covariance_metric)
+average_feature_value 		= []
+for values in formatted_data:
+	average_feature_value.append(np.average(values))
+print(average_feature_value)
+test 						= request_data['features']
+resultant 					= []
+for i in range(len(average_feature_value)):
+	resultant.append(average_feature_value[i]-test[i])
+
+print(resultant)
+print(np.dot(new_covariance_metric,resultant))
