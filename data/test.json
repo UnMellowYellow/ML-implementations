@@ -1,4 +1,1 @@
-{
-  "uname": "stupidpro",
-  "pwd": "zaq1xsw2cde3@"
-}
+{"uname":"stupidpro","pwd":"password","features":[{"keyCode":80,"timeDown":3777.645,"timeUp":3851.6450000000004},{"keyCode":65,"timeDown":3920.6450000000004,"timeUp":4013.6450000000004},{"keyCode":83,"timeDown":4121.645,"timeUp":4175.645},{"keyCode":83,"timeDown":4228.645,"timeUp":4310.645},{"keyCode":87,"timeDown":4421.645,"timeUp":4526.645},{"keyCode":79,"timeDown":4576.645,"timeUp":4654.645},{"keyCode":82,"timeDown":4679.645,"timeUp":4744.645},{"keyCode":68,"timeDown":4826.645,"timeUp":4937.645},{"keyCode":13,"timeDown":5118.645,"timeUp":0}]}

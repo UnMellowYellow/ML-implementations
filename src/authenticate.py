@@ -62,10 +62,18 @@ def format_data(data):
 
 	return formatted_data
 
+def get_test_features(something):
+
+	# Generating feature values
+	features 				= []
+	for i in range(1,len(something)):
+		features.append(something[i]["timeDown"]-something[i-1]["timeUp"])
+
+	return features
+
 # Constants and predefined variables
 FILE_PATH 					= "../data/test.json"
 DATA_DIR					= "../output"
-
 request_data 				= get_request_data(FILE_PATH)
 user_file					= get_data_list(request_data['uname'].lower(),DATA_DIR)
 raw_data 					= get_data(user_file)
@@ -78,7 +86,8 @@ average_feature_value 		= []
 for values in formatted_data:
 	average_feature_value.append(np.average(values))
 print(average_feature_value)
-test 						= request_data['features']
+test 						= get_test_features(request_data['features'])
+print(test)
 resultant 					= []
 for i in range(len(average_feature_value)):
 	resultant.append(average_feature_value[i]-test[i])
